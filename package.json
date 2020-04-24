@@ -1,0 +1,63 @@
+{
+  "name": "month-picker",
+  "version": "0.1.0",
+  "description": "month-picker",
+  "main": "month-picker.js",
+  "module": "month-picker.js",
+  "repository": "pekam/month-picker",
+  "keywords": [
+    "Vaadin",
+    "month-picker",
+    "web-components",
+    "web-component",
+    "lit-element"
+  ],
+  "author": "Pekka Maanpää",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/pekam/month-picker/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "analyze": "wca analyze src/*.ts --format json --outFile custom-elements.json",
+    "build": "tsc && replace-in-file \"/(import|from)( '[.]+/)(.*)(?<!.js)(';)/g\" \"\\$1\\$2\\$3.js\\$4\" month-*.{js,d.ts},src/*.{js,d.ts},theme/**/*.{js,d.ts} --isRegex --verbose",
+    "dist": "rimraf dist && npm run analyze && npm run build && rollup -c rollup.config.js && cp custom-elements.json dist",
+    "check:version": "magi check-version",
+    "gemini": "gemini update test/visual",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:css": "stylelint src/*.ts theme/**/*.ts test/*.ts",
+    "lint:js": "eslint src theme test --ext .ts --ignore-path .gitignore",
+    "lint:lit": "lit-analyzer src --strict",
+    "prepublishOnly": "npm run build",
+    "prestart": "npm run analyze",
+    "preversion": "magi update-version",
+    "serve:dist": "es-dev-server --app-index dist/index.html --open",
+    "start": "es-dev-server --file-extensions .ts --node-resolve --babel --watch --port 3000 --open",
+    "test": "karma start"
+  },
+  "dependencies": {
+    "@vaadin/control-state-mixin": "^0.1.0",
+    "@vaadin/element-base": "^0.3.0",
+    "@vaadin/themable-element": "^0.2.0",
+    "@vaadin/vaadin-lumo-styles": "^1.5.0",
+    "@vaadin/vaadin-material-styles": "^1.2.3",
+    "@vaadin/vaadin-themable-mixin": "^1.5.2",
+    "lit-element": "^2.0.0",
+    "lit-html": "^1.0.0",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@vaadin/vaadin-component-dev-dependencies": "^4.3.0"
+  }
+}
