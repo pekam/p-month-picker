@@ -53,6 +53,7 @@
     "@vaadin/vaadin-lumo-styles": "^1.5.0",
     "@vaadin/vaadin-material-styles": "^1.2.3",
     "@vaadin/vaadin-themable-mixin": "^1.5.2",
+    "@vaadin/vaadin-text-field": "^2.6.0",
     "lit-element": "^2.0.0",
     "lit-html": "^1.0.0",
     "tslib": "^1.10.0"

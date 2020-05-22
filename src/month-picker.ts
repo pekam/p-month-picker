@@ -4,6 +4,7 @@
  */
 import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
+import '@vaadin/vaadin-text-field/vaadin-text-field';
 
 /**
  * `<month-picker>` is a Web Component.
@@ -20,7 +21,9 @@ class MonthPicker extends VaadinElement {
     return '0.1.0';
   }
 
-  @property({type: String}) name = 'World';
+  @property({type: String}) value = 'World';
+
+  private __boundInputValueChanged = this.__inputValueChanged.bind(this);
 
   static get styles() {
     return css`
@@ -36,8 +39,16 @@ class MonthPicker extends VaadinElement {
 
   render() {
     return html`
-      <div>Hello ${this.name}</div>
+      <vaadin-text-field
+        value=${this.value}
+        @value-changed="${this.__boundInputValueChanged}">
+      </vaadin-text-field>
+      <div>Hello ${this.value}</div>
     `;
+  }
+
+  private __inputValueChanged(e: CustomEvent) {
+    this.value = e.detail.value;
   }
 }
 
