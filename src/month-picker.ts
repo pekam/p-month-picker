@@ -25,6 +25,8 @@ class MonthPicker extends VaadinElement {
   @property({type: String}) value = 'World';
   @property({type: Boolean}) opened = false;
 
+  @query('#textField') textField: HTMLElement;
+
   private __boundInputClicked = this.__inputClicked.bind(this);
   private __boundInputValueChanged = this.__inputValueChanged.bind(this);
   private __boundRenderOverlay = this.__renderOverlay.bind(this);
@@ -44,11 +46,14 @@ class MonthPicker extends VaadinElement {
   render() {
     return html`
       <vaadin-text-field
+        id="textField"
         value=${this.value}
         @click=${this.__boundInputClicked}
         @value-changed=${this.__boundInputValueChanged}>
       </vaadin-text-field>
       <vaadin-positioned-overlay
+        .positionTarget=${this.textField}
+        no-vertical-overlap
         .opened=${this.opened}
         @opened-changed=${(e: CustomEvent) => this.opened = e.detail.value}
         .renderer=${this.__boundRenderOverlay}>
