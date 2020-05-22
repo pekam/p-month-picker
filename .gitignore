@@ -8,7 +8,7 @@ month-picker.js
 month-picker.d.ts
 month-picker.d.ts.map
 month-picker.js.map
-/src/**/*.js
+# /src/**/*.js
 /src/**/*.js.map
 /src/**/*.d.ts
 /src/**/*.d.ts.map
