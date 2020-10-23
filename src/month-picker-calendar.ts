@@ -73,6 +73,7 @@ class MonthPickerCalendar extends VaadinElement {
             <div class="month-button"
               data-value=${value}
               ?selected=${this.value === value}
+              @click=${() => this.dispatchEvent(new CustomEvent('month-clicked', {detail: value}))}
               tabindex="0">
                 ${content}
             </div>`)}
