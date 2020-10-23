@@ -4,6 +4,7 @@
  */
 import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
+import {formatValue} from "./month-picker-util";
 
 /**
  * @element month-picker-calendar
@@ -18,6 +19,7 @@ class MonthPickerCalendar extends VaadinElement {
     return '0.1.0';
   }
 
+  @property({type: String}) value;
   @property({type: Array}) monthNames = [];
   @property({type: Number}) currentYear = 2020;
 
@@ -61,10 +63,19 @@ class MonthPickerCalendar extends VaadinElement {
       </div>
 
       <div class="month-grid">
-        ${this.monthNames.map(month => html`
-          <div class="month-button" tabindex="0">
-            ${month.substr(0, 3)}
-          </div>`)}
+        ${this.monthNames
+          .map((name, index) => (
+            {
+              content: name.substr(0, 3),
+              value: formatValue(this.currentYear, index + 1)
+            }))
+          .map(({content, value}) => html`
+            <div class="month-button"
+              data-value=${value}
+              ?selected=${this.value === value}
+              tabindex="0">
+                ${content}
+            </div>`)}
       </div>`;
   }
 

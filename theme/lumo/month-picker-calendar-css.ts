@@ -20,4 +20,10 @@ export const calendarStyles = css`
 
     --_month-button-height: var(--lumo-size-m);
   }
+
+  .month-button[selected] {
+    background: var(--lumo-primary-color);
+    color: var(--lumo-base-color);
+    font-weight: 600;
+  }
 `;

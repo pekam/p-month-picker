@@ -76,7 +76,10 @@ class MonthPicker extends VaadinElement {
 
   private __renderOverlay(root: HTMLElement) {
     const content = html`
-      <month-picker-calendar .monthNames=${this.monthNames}></month-picker-calendar>`
+      <month-picker-calendar
+        .value=${this.value}
+        .monthNames=${this.monthNames}
+      ></month-picker-calendar>`
     render(content, root);
   }
 }
