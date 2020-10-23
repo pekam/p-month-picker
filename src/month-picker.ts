@@ -7,6 +7,7 @@ import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field';
 import './vaadin-positioned-overlay';
 import {render} from "lit-html";
+import './month-picker-calendar';
 
 /**
  * `<month-picker>` is a Web Component.
@@ -75,7 +76,7 @@ class MonthPicker extends VaadinElement {
 
   private __renderOverlay(root: HTMLElement) {
     const content = html`<h1>Hello ${this.value}</h1>
-      ${this.monthNames.map(month => html`<div>${month.substr(0, 3)}</div>`)}`
+      <month-picker-calendar .monthNames=${this.monthNames}></month-picker-calendar>`
     render(content, root);
   }
 }
