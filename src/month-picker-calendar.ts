@@ -2,11 +2,8 @@
  * @license
  * This program is available under Apache License Version 2.0
  */
-import {html, css, customElement, property, query} from 'lit-element';
+import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
-import '@vaadin/vaadin-text-field/vaadin-text-field';
-import './vaadin-positioned-overlay';
-import {render} from "lit-html";
 
 /**
  * @element month-picker-calendar
@@ -26,17 +23,30 @@ class MonthPickerCalendar extends VaadinElement {
   static get styles() {
     return css`
       :host {
-        display: inline-block;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 16rem;
       }
 
       :host([hidden]) {
         display: none !important;
       }
+
+      .month-button {
+        text-align: center;
+        cursor: default;
+
+        height: var(--_month-button-height);
+        line-height: var(--_month-button-height);
+      }
     `;
   }
 
   render() {
-    return html`${this.monthNames.map(month => html`<div>${month.substr(0, 3)}</div>`)}`;
+    return html`${this.monthNames.map(month => html`
+        <div class="month-button" tabindex="0">
+          ${month.substr(0, 3)}
+        </div>`)}`;
   }
 
 }
