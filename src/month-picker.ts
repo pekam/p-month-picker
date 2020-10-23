@@ -24,7 +24,7 @@ class MonthPicker extends VaadinElement {
     return '0.1.0';
   }
 
-  @property({type: String}) value = 'World';
+  @property({type: String}) value = '2020-01';
   @property({type: Boolean}) opened = false;
 
   @property({type: Array}) monthNames = ["January", "February", "March", "April",
@@ -75,7 +75,7 @@ class MonthPicker extends VaadinElement {
   }
 
   private __renderOverlay(root: HTMLElement) {
-    const content = html`<h1>Hello ${this.value}</h1>
+    const content = html`
       <month-picker-calendar .monthNames=${this.monthNames}></month-picker-calendar>`
     render(content, root);
   }
