@@ -2,12 +2,20 @@
  * @license
  * This program is available under Apache License Version 2.0
  */
-import {html, css, customElement, property, query} from 'lit-element';
+import {
+  html,
+  css,
+  customElement,
+  property,
+  query,
+  PropertyValues
+} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field';
 import './vaadin-positioned-overlay';
 import {render} from "lit-html";
 import './month-picker-calendar';
+import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
 
 /**
  * `<month-picker>` is a Web Component.
@@ -30,7 +38,9 @@ class MonthPicker extends VaadinElement {
   @property({type: Array}) monthNames = ["January", "February", "March", "April",
     "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  @query('#textField') textField: HTMLElement;
+  @query('#textField') private textField: HTMLElement;
+  // Can't use @query for overlay, because it will be teleported to body
+  private overlay: OverlayElement;
 
   private __boundInputClicked = this.__inputClicked.bind(this);
   private __boundInputValueChanged = this.__inputValueChanged.bind(this);
@@ -48,6 +58,12 @@ class MonthPicker extends VaadinElement {
     `;
   }
 
+  update(props: PropertyValues)  {
+    super.update(props);
+    this.overlay = this.overlay || this.shadowRoot.querySelector('#overlay');
+    this.overlay && this.overlay.render();
+  }
+
   render() {
     return html`
       <vaadin-text-field
@@ -57,6 +73,7 @@ class MonthPicker extends VaadinElement {
         @value-changed=${this.__boundInputValueChanged}>
       </vaadin-text-field>
       <vaadin-positioned-overlay
+        id="overlay"
         .positionTarget=${this.textField}
         no-vertical-overlap
         .opened=${this.opened}
