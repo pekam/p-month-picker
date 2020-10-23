@@ -19,17 +19,26 @@ class MonthPickerCalendar extends VaadinElement {
   }
 
   @property({type: Array}) monthNames = [];
+  @property({type: Number}) currentYear = 2020;
 
   static get styles() {
     return css`
       :host {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        width: 16rem;
       }
 
       :host([hidden]) {
         display: none !important;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .month-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 16rem;
       }
 
       .month-button {
@@ -43,10 +52,20 @@ class MonthPickerCalendar extends VaadinElement {
   }
 
   render() {
-    return html`${this.monthNames.map(month => html`
-        <div class="month-button" tabindex="0">
-          ${month.substr(0, 3)}
-        </div>`)}`;
+    return html`
+
+      <div class="header">
+        <div> < </div>
+          ${this.currentYear}
+        <div> > </div>
+      </div>
+
+      <div class="month-grid">
+        ${this.monthNames.map(month => html`
+          <div class="month-button" tabindex="0">
+            ${month.substr(0, 3)}
+          </div>`)}
+      </div>`;
   }
 
 }
