@@ -35,6 +35,7 @@ class MonthPickerCalendar extends VaadinElement {
       .header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
       }
 
       .month-grid {
@@ -57,9 +58,9 @@ class MonthPickerCalendar extends VaadinElement {
     return html`
 
       <div class="header">
-        <div @click=${() => this.currentYear--}> < </div>
+        <div class="yearButton prevYear" @click=${() => this.currentYear--}></div>
           ${this.currentYear}
-        <div @click=${() => this.currentYear++}> > </div>
+        <div class="yearButton nextYear" @click=${() => this.currentYear++}></div>
       </div>
 
       <div class="month-grid">
