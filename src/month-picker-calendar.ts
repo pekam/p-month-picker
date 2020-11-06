@@ -4,7 +4,7 @@
  */
 import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
-import {formatValue} from "./month-picker-util";
+import {clickOnKey, formatValue} from "./month-picker-util";
 
 /**
  * @element month-picker-calendar
@@ -75,6 +75,7 @@ class MonthPickerCalendar extends VaadinElement {
               data-value=${value}
               ?selected=${this.value === value}
               @click=${() => this.dispatchEvent(new CustomEvent('month-clicked', {detail: value}))}
+              @keydown=${e => clickOnKey(e, ' ', 'Enter')}
               tabindex="0">
                 ${content}
             </div>`)}

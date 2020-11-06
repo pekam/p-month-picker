@@ -16,6 +16,7 @@ import './vaadin-positioned-overlay';
 import {render} from "lit-html";
 import './month-picker-calendar';
 import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
+import {clickOnKey} from "./month-picker-util";
 
 /**
  * `<month-picker>` is a Web Component.
@@ -70,6 +71,7 @@ class MonthPicker extends VaadinElement {
         id="textField"
         value=${this.value}
         @click=${this.__boundInputClicked}
+        @keydown=${e => clickOnKey(e, ' ', 'ArrowDown')}
         @value-changed=${this.__boundInputValueChanged}>
       </vaadin-text-field>
       <vaadin-positioned-overlay
@@ -84,7 +86,7 @@ class MonthPicker extends VaadinElement {
   }
 
   private __inputClicked(e: MouseEvent) {
-    this.opened = true;
+    this.opened = !this.opened;
   }
 
   private __inputValueChanged(e: CustomEvent) {
