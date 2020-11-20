@@ -17,6 +17,7 @@ import {render} from "lit-html";
 import './month-picker-calendar';
 import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
 import {clickOnKey, parseValue, YearMonth} from "./month-picker-util";
+import {TextFieldElement} from "@vaadin/vaadin-text-field/vaadin-text-field";
 
 /**
  * `<month-picker>` is a Web Component.
@@ -40,7 +41,7 @@ class MonthPicker extends VaadinElement {
     "May", "June", "July", "August", "September", "October", "November", "December"];
   private shortMonthNames = this.monthNames.map(m => m.substr(0, 3));
 
-  @query('#textField') private textField: HTMLElement;
+  @query('#textField') private textField: TextFieldElement;
   // Can't use @query for overlay, because it will be teleported to body
   private overlay: OverlayElement;
 
