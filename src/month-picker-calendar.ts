@@ -20,7 +20,7 @@ class MonthPickerCalendar extends VaadinElement {
   }
 
   @property({type: String}) value;
-  @property({type: Array}) monthNames = [];
+  @property({type: Array}) shortMonthNames = [];
   @property({type: Number}) currentYear = 2020;
 
   static get styles() {
@@ -71,11 +71,11 @@ class MonthPickerCalendar extends VaadinElement {
       </div>
 
       <div class="month-grid">
-        ${this.monthNames
+        ${this.shortMonthNames
           .map((name, index) => (
             {
-              content: name.substr(0, 3),
-              value: formatValue(this.currentYear, index + 1)
+              content: name,
+              value: formatValue({year: this.currentYear, month: index + 1})
             }))
           .map(({content, value}) => html`
             <div class="month-button"

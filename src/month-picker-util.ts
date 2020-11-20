@@ -1,5 +1,21 @@
-export function formatValue(year: number, month: number): string {
+export interface YearMonth {
+  year: number,
+  month: number
+}
+
+export function formatValue({year, month}: YearMonth): string {
   return year + '-' + (('0' + month).substr(-2))
+}
+
+export function parseValue(value: string): YearMonth {
+  if (value && value.length) {
+    const parts = value.split('-');
+    return {
+      year: parseInt(parts[0]),
+      month: parseInt(parts[1])
+    }
+  }
+  throw new Error('Invalid value');
 }
 
 export function clickOnKey(event: KeyboardEvent, ...keys: string[]) {

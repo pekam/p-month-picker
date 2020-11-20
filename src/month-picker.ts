@@ -16,7 +16,7 @@ import './vaadin-positioned-overlay';
 import {render} from "lit-html";
 import './month-picker-calendar';
 import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
-import {clickOnKey} from "./month-picker-util";
+import {clickOnKey, parseValue, YearMonth} from "./month-picker-util";
 
 /**
  * `<month-picker>` is a Web Component.
@@ -36,8 +36,9 @@ class MonthPicker extends VaadinElement {
   @property({type: String}) value = '2020-01';
   @property({type: Boolean}) opened = false;
 
-  @property({type: Array}) monthNames = ["January", "February", "March", "April",
+  private monthNames = ["January", "February", "March", "April",
     "May", "June", "July", "August", "September", "October", "November", "December"];
+  private shortMonthNames = this.monthNames.map(m => m.substr(0, 3));
 
   @query('#textField') private textField: HTMLElement;
   // Can't use @query for overlay, because it will be teleported to body
@@ -69,7 +70,7 @@ class MonthPicker extends VaadinElement {
     return html`
       <vaadin-text-field
         id="textField"
-        value=${this.value}
+        value=${(this.value && this.value.length) ? this.formatValue(parseValue(this.value)) : ''}
         @click=${this.__boundInputClicked}
         @keydown=${e => clickOnKey(e, ' ', 'ArrowDown')}
         @value-changed=${this.__boundInputValueChanged}>
@@ -86,19 +87,22 @@ class MonthPicker extends VaadinElement {
     `;
   }
 
+  formatValue({year, month}: YearMonth) {
+    return `${this.shortMonthNames[month - 1]} ${year}`;
+  }
+
   private __inputClicked(e: MouseEvent) {
     this.opened = !this.opened;
   }
 
   private __inputValueChanged(e: CustomEvent) {
-    this.value = e.detail.value;
   }
 
   private __renderOverlay(root: HTMLElement) {
     const content = html`
       <month-picker-calendar
         .value=${this.value}
-        .monthNames=${this.monthNames}
+        .shortMonthNames=${this.shortMonthNames}
         @month-clicked=${(e: CustomEvent) => this.value = (this.value === e.detail) ? '' : e.detail}
       ></month-picker-calendar>`
     render(content, root);
