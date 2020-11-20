@@ -70,10 +70,10 @@ class MonthPicker extends VaadinElement {
     return html`
       <vaadin-text-field
         id="textField"
-        value=${(this.value && this.value.length) ? this.formatValue(parseValue(this.value)) : ''}
+        value=${this.formattedValue}
         @click=${this.__boundInputClicked}
         @keydown=${e => clickOnKey(e, ' ', 'ArrowDown')}
-        @value-changed=${this.__boundInputValueChanged}>
+        @change=${this.__boundInputValueChanged}>
       </vaadin-text-field>
       <vaadin-positioned-overlay
         id="overlay"
@@ -87,15 +87,32 @@ class MonthPicker extends VaadinElement {
     `;
   }
 
+  /**
+   * Override to define how the value is displayed in the text field.
+   */
   formatValue({year, month}: YearMonth) {
     return `${this.shortMonthNames[month - 1]} ${year}`;
   }
 
-  private __inputClicked(e: MouseEvent) {
+  get formattedValue() {
+    return (this.value && this.value.length)
+      ? this.formatValue(parseValue(this.value))
+      : '';
+  }
+
+  private __inputClicked() {
     this.opened = !this.opened;
   }
 
-  private __inputValueChanged(e: CustomEvent) {
+  private __inputValueChanged() {
+    const inputValue = this.textField.value;
+    // Allow only clearing the value,
+    // otherwise just reset the current value.
+    if (inputValue && inputValue.length) {
+      this.textField.value = this.formattedValue;
+    } else {
+      this.value = '';
+    }
   }
 
   private __renderOverlay(root: HTMLElement) {
