@@ -15,12 +15,20 @@ export const calendarStyles = css`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .yearButton {
+    outline: none;
+  }
+
   .yearButton::before {
     font-family: "lumo-icons";
     font-size: var(--lumo-icon-size-m);
     text-align: center;
     color: var(--lumo-contrast-60pct);
     cursor: var(--lumo-clickable-cursor);
+  }
+
+  .yearButton:focus::before {
+    color: var(--lumo-primary-color);
   }
 
   .prevYear::before {
