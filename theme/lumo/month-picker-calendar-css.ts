@@ -37,6 +37,10 @@ export const calendarStyles = css`
     --_month-button-height: var(--lumo-size-m);
   }
 
+  .month-button:focus {
+    box-shadow: 0 0 0 2px var(--lumo-primary-color-50pct);
+  }
+
   .month-button[selected] {
     background: var(--lumo-primary-color);
     color: var(--lumo-base-color);

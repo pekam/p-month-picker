@@ -47,6 +47,7 @@ class MonthPickerCalendar extends VaadinElement {
       .month-button {
         text-align: center;
         cursor: default;
+        outline: none;
 
         height: var(--_month-button-height);
         line-height: var(--_month-button-height);
