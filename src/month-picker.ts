@@ -18,6 +18,7 @@ import './month-picker-calendar';
 import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
 import {clickOnKey, parseValue, YearMonth} from "./month-picker-util";
 import {TextFieldElement} from "@vaadin/vaadin-text-field/vaadin-text-field";
+import { MonthPickerCalendar } from './month-picker-calendar';
 
 /**
  * `<month-picker>` is a Web Component.
@@ -44,9 +45,11 @@ class MonthPicker extends VaadinElement {
   @query('#textField') private textField: TextFieldElement;
   // Can't use @query for overlay, because it will be teleported to body
   private overlay: OverlayElement;
+  private calendar: MonthPickerCalendar;
 
   private __boundInputClicked = this.__inputClicked.bind(this);
   private __boundInputValueChanged = this.__inputValueChanged.bind(this);
+  private __boundOverlayOpenedChanged = this.__overlayOpenedChanged.bind(this);
   private __boundRenderOverlay = this.__renderOverlay.bind(this);
 
   static get styles() {
@@ -65,6 +68,7 @@ class MonthPicker extends VaadinElement {
     super.update(props);
     this.overlay = this.overlay || this.shadowRoot.querySelector('#overlay');
     this.overlay && this.overlay.render();
+    this.calendar = this.calendar || this.shadowRoot.querySelector('month-picker-calendar');
   }
 
   render() {
@@ -81,7 +85,7 @@ class MonthPicker extends VaadinElement {
         .positionTarget=${this.textField}
         no-vertical-overlap
         .opened=${this.opened}
-        @opened-changed=${(e: CustomEvent) => this.opened = e.detail.value}
+        @opened-changed=${this.__boundOverlayOpenedChanged}
         .renderer=${this.__boundRenderOverlay}
         focus-trap>
       </vaadin-positioned-overlay>
@@ -96,9 +100,13 @@ class MonthPicker extends VaadinElement {
   }
 
   get formattedValue() {
-    return (this.value && this.value.length)
-      ? this.formatValue(parseValue(this.value))
+    return this.yearMonth
+      ? this.formatValue(this.yearMonth)
       : '';
+  }
+
+  get yearMonth(): YearMonth | null {
+    return parseValue(this.value);
   }
 
   private __inputClicked() {
@@ -113,6 +121,16 @@ class MonthPicker extends VaadinElement {
       this.textField.value = this.formattedValue;
     } else {
       this.value = '';
+    }
+  }
+
+  private __overlayOpenedChanged(e: CustomEvent) {
+    const opened = e.detail.value;
+    this.opened = opened;
+    if (opened) {
+      this.calendar.openedYear = this.yearMonth
+        ? this.yearMonth.year
+        : new Date().getFullYear();
     }
   }
 

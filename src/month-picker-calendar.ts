@@ -21,7 +21,7 @@ class MonthPickerCalendar extends VaadinElement {
 
   @property({type: String}) value;
   @property({type: Array}) shortMonthNames = [];
-  @property({type: Number}) currentYear = 2020;
+  @property({type: Number}) openedYear = 2020;
 
   static get styles() {
     return css`
@@ -60,12 +60,12 @@ class MonthPickerCalendar extends VaadinElement {
 
       <div class="header">
         <div class="yearButton prevYear" tabindex="0"
-            @click=${() => this.currentYear--}
+            @click=${() => this.openedYear--}
             @keydown=${e => clickOnKey(e, ' ', 'Enter')}
         ></div>
-          ${this.currentYear}
+          ${this.openedYear}
         <div class="yearButton nextYear" tabindex="0"
-            @click=${() => this.currentYear++}
+            @click=${() => this.openedYear++}
             @keydown=${e => clickOnKey(e, ' ', 'Enter')}
         ></div>
       </div>
@@ -75,7 +75,7 @@ class MonthPickerCalendar extends VaadinElement {
           .map((name, index) => (
             {
               content: name,
-              value: formatValue({year: this.currentYear, month: index + 1})
+              value: formatValue({year: this.openedYear, month: index + 1})
             }))
           .map(({content, value}) => html`
             <div class="month-button"

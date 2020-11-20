@@ -7,7 +7,7 @@ export function formatValue({year, month}: YearMonth): string {
   return year + '-' + (('0' + month).substr(-2))
 }
 
-export function parseValue(value: string): YearMonth {
+export function parseValue(value: string): YearMonth | null {
   if (value && value.length) {
     const parts = value.split('-');
     return {
@@ -15,7 +15,7 @@ export function parseValue(value: string): YearMonth {
       month: parseInt(parts[1])
     }
   }
-  throw new Error('Invalid value');
+  return null;
 }
 
 export function clickOnKey(event: KeyboardEvent, ...keys: string[]) {
