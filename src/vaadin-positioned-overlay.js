@@ -10,6 +10,13 @@ customElements.whenDefined('vaadin-overlay').then(() => {
     static get is() {
       return 'vaadin-positioned-overlay';
     }
+
+    constructor() {
+      super();
+      // Hack to make the overlay itself not focusable:
+      this.addEventListener('opened-changed', () =>
+        this.opened && (this.shadowRoot.querySelector('#overlay').tabIndex = -1));
+    }
   }
   customElements.define(PositionedOverlay.is, PositionedOverlay);
 });
