@@ -145,7 +145,7 @@ class MonthPicker extends VaadinElement {
     if (yearMonth) {
       this.value = yearMonthToValue(yearMonth);
     } else {
-      this.value = '';
+      this.value = this.textField.value = '';
     }
   }
 
