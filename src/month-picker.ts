@@ -42,6 +42,8 @@ class MonthPicker extends VaadinElement {
 
   @property({type: String}) value = '2020-01';
   @property({type: Boolean}) opened = false;
+  @property({type: Boolean}) disabled = false;
+  @property({type: Boolean}) readonly = false;
 
   private monthNames = ["January", "February", "March", "April",
     "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -83,7 +85,9 @@ class MonthPicker extends VaadinElement {
         value=${this.formattedValue}
         @click=${this.__boundInputClicked}
         @keydown=${e => clickOnKey(e, ' ', 'ArrowDown')}
-        @change=${this.__boundInputValueChanged}>
+        @change=${this.__boundInputValueChanged}
+        ?disabled=${this.disabled}
+        ?readonly=${this.readonly}>
           <div part="toggle-button" slot="suffix"></div>
       </vaadin-text-field>
       <vaadin-positioned-overlay
@@ -136,7 +140,9 @@ class MonthPicker extends VaadinElement {
   }
 
   private __inputClicked() {
-    this.opened = !this.opened;
+    if (!this.disabled && !this.readonly) {
+      this.opened = !this.opened;
+    }
   }
 
   private __inputValueChanged() {
