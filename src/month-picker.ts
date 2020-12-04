@@ -12,7 +12,7 @@ import {
 } from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field';
-import './vaadin-positioned-overlay';
+import './month-picker-overlay';
 import {render} from "lit-html";
 import './month-picker-calendar';
 import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
@@ -95,14 +95,14 @@ class MonthPicker extends VaadinElement {
         ?readonly=${this.readonly}>
           <div part="toggle-button" slot="suffix"></div>
       </vaadin-text-field>
-      <vaadin-positioned-overlay
+      <month-picker-overlay
         id="overlay"
         .positionTarget=${this.textField}
         no-vertical-overlap
         .opened=${this.opened}
         @opened-changed=${this.__boundOverlayOpenedChanged}
         .renderer=${this.__boundRenderOverlay}>
-      </vaadin-positioned-overlay>
+      </month-picker-overlay>
     `;
   }
 
