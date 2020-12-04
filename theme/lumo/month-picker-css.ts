@@ -14,4 +14,23 @@ export const componentStyles = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  [part="toggle-button"] {
+    flex: none;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    font-size: var(--lumo-icon-size-m);
+    text-align: center;
+    color: var(--lumo-contrast-60pct);
+    transition: 0.2s color;
+    cursor: var(--lumo-clickable-cursor);
+  }
+  [part="toggle-button"]::before {
+    display: block;
+    font-family: "lumo-icons";
+    content: var(--lumo-icons-calendar);
+  }
+  [part="toggle-button"]:hover {
+    color: var(--lumo-body-text-color);
+  }
 `;

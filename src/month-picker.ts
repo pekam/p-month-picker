@@ -84,6 +84,7 @@ class MonthPicker extends VaadinElement {
         @click=${this.__boundInputClicked}
         @keydown=${e => clickOnKey(e, ' ', 'ArrowDown')}
         @change=${this.__boundInputValueChanged}>
+          <div part="toggle-button" slot="suffix"></div>
       </vaadin-text-field>
       <vaadin-positioned-overlay
         id="overlay"
