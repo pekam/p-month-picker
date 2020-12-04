@@ -4,7 +4,7 @@
  */
 import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
-import {clickOnKey, formatValue} from "./month-picker-util";
+import {clickOnKey, yearMonthToValue} from "./month-picker-util";
 
 /**
  * @element month-picker-calendar
@@ -75,7 +75,7 @@ class MonthPickerCalendar extends VaadinElement {
           .map((name, index) => (
             {
               content: name,
-              value: formatValue({year: this.openedYear, month: index + 1})
+              value: yearMonthToValue({year: this.openedYear, month: index + 1})
             }))
           .map(({content, value}) => html`
             <div class="month-button"

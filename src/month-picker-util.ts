@@ -3,11 +3,11 @@ export interface YearMonth {
   month: number
 }
 
-export function formatValue({year, month}: YearMonth): string {
+export function yearMonthToValue({year, month}: YearMonth): string {
   return year + '-' + (('0' + month).substr(-2))
 }
 
-export function parseValue(value: string): YearMonth | null {
+export function valueToYearMonth(value: string): YearMonth | null {
   if (value && value.length) {
     const parts = value.split('-');
     return {

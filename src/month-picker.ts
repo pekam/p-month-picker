@@ -16,7 +16,12 @@ import './vaadin-positioned-overlay';
 import {render} from "lit-html";
 import './month-picker-calendar';
 import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
-import {clickOnKey, parseValue, YearMonth} from "./month-picker-util";
+import {
+  clickOnKey,
+  yearMonthToValue,
+  valueToYearMonth,
+  YearMonth
+} from "./month-picker-util";
 import {TextFieldElement} from "@vaadin/vaadin-text-field/vaadin-text-field";
 import { MonthPickerCalendar } from './month-picker-calendar';
 
@@ -93,10 +98,30 @@ class MonthPicker extends VaadinElement {
   }
 
   /**
-   * Override to define how the value is displayed in the text field.
+   * Override formatValue and parseValue to define how the current value is
+   * presented in the field.
    */
   formatValue({year, month}: YearMonth) {
-    return `${this.shortMonthNames[month - 1]} ${year}`;
+    return `${month}/${year}`;
+  }
+
+  /**
+   * Override formatValue and parseValue to define how the current value is
+   * presented in the field.
+   */
+  parseValue(inputValue: string): YearMonth | null {
+    if (!inputValue.match(/^[0-9]+[/][0-9]+$/)) {
+      return null;
+    }
+    const parts = inputValue.split('/');
+    const month = parseInt(parts[0]);
+    const year = parseInt(parts[1]);
+
+    if (month < 1 || month > 12) {
+      return null;
+    }
+
+    return {month,year};
   }
 
   get formattedValue() {
@@ -106,7 +131,7 @@ class MonthPicker extends VaadinElement {
   }
 
   get yearMonth(): YearMonth | null {
-    return parseValue(this.value);
+    return valueToYearMonth(this.value);
   }
 
   private __inputClicked() {
@@ -115,10 +140,9 @@ class MonthPicker extends VaadinElement {
 
   private __inputValueChanged() {
     const inputValue = this.textField.value;
-    // Allow only clearing the value,
-    // otherwise just reset the current value.
-    if (inputValue && inputValue.length) {
-      this.textField.value = this.formattedValue;
+    const yearMonth = this.parseValue(inputValue);
+    if (yearMonth) {
+      this.value = yearMonthToValue(yearMonth);
     } else {
       this.value = '';
     }
