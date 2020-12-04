@@ -101,8 +101,7 @@ class MonthPicker extends VaadinElement {
         no-vertical-overlap
         .opened=${this.opened}
         @opened-changed=${this.__boundOverlayOpenedChanged}
-        .renderer=${this.__boundRenderOverlay}
-        focus-trap>
+        .renderer=${this.__boundRenderOverlay}>
       </vaadin-positioned-overlay>
     `;
   }
