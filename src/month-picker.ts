@@ -40,7 +40,7 @@ class MonthPicker extends VaadinElement {
     return '0.1.0';
   }
 
-  @property({type: String}) value = '2020-01';
+  @property({type: String}) value = '';
   @property({type: Boolean}) opened = false;
 
   @property({type: String}) label = '';
