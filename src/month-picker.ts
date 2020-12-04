@@ -42,6 +42,9 @@ class MonthPicker extends VaadinElement {
 
   @property({type: String}) value = '2020-01';
   @property({type: Boolean}) opened = false;
+
+  @property({type: String}) label = '';
+  @property({type: String}) placeholder = '';
   @property({type: Boolean}) disabled = false;
   @property({type: Boolean}) readonly = false;
 
@@ -86,6 +89,8 @@ class MonthPicker extends VaadinElement {
         @click=${this.__boundInputClicked}
         @keydown=${e => clickOnKey(e, ' ', 'ArrowDown')}
         @change=${this.__boundInputValueChanged}
+        label=${this.label}
+        placeholder=${this.placeholder}
         ?disabled=${this.disabled}
         ?readonly=${this.readonly}>
           <div part="toggle-button" slot="suffix"></div>
