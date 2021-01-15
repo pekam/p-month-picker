@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false
   },
   "include": [
     "p-month-picker.ts",
