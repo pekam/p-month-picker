@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@vaadin/vaadin-component-dev-dependencies/testing.js';
-import { MonthPicker } from '../src/month-picker';
+import { MonthPicker } from '../src/p-month-picker';
 
 describe('month-picker', () => {
   let element: MonthPicker;

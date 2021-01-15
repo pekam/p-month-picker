@@ -4,7 +4,7 @@
  */
 import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
-import {clickOnKey, yearMonthToValue} from "./month-picker-util";
+import {clickOnKey, yearMonthToValue} from "./p-month-picker-util";
 
 /**
  * @element p-month-picker-calendar
