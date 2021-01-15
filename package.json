@@ -1,9 +1,9 @@
 {
-  "name": "month-picker",
+  "name": "p-month-picker",
   "version": "0.1.0",
-  "description": "month-picker",
-  "main": "month-picker.js",
-  "module": "month-picker.js",
+  "description": "A web component for picking year and month.",
+  "main": "p-month-picker.js",
+  "module": "p-month-picker.js",
   "repository": "pekam/month-picker",
   "keywords": [
     "Vaadin",

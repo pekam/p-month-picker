@@ -4,10 +4,10 @@ package-lock.json
 yarn.lock
 coverage
 custom-elements.json
-month-picker.js
-month-picker.d.ts
-month-picker.d.ts.map
-month-picker.js.map
+p-month-picker.js
+p-month-picker.d.ts
+p-month-picker.d.ts.map
+p-month-picker.js.map
 # /src/**/*.js
 /src/**/*.js.map
 /src/**/*.d.ts

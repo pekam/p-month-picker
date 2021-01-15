@@ -18,7 +18,7 @@
     "importHelpers": true
   },
   "include": [
-    "month-picker.ts",
+    "p-month-picker.ts",
     "src",
     "test",
     "theme",

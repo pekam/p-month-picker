@@ -12,18 +12,18 @@ import {
 } from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field';
-import './month-picker-overlay';
+import './p-month-picker-overlay';
 import {render} from "lit-html";
-import './month-picker-calendar';
+import './p-month-picker-calendar';
 import {OverlayElement} from "@vaadin/vaadin-overlay/vaadin-overlay";
 import {
   clickOnKey,
   yearMonthToValue,
   valueToYearMonth,
   YearMonth
-} from "./month-picker-util";
+} from "./p-month-picker-util";
 import {TextFieldElement} from "@vaadin/vaadin-text-field/vaadin-text-field";
-import { MonthPickerCalendar } from './month-picker-calendar';
+import { MonthPickerCalendar } from './p-month-picker-calendar';
 
 /**
  * `<p-month-picker>` is a Web Component.
