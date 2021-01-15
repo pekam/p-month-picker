@@ -8,7 +8,8 @@ p-month-picker.js
 p-month-picker.d.ts
 p-month-picker.d.ts.map
 p-month-picker.js.map
-# /src/**/*.js
+/src/**/*.js
+!/src/p-month-picker-overlay.js
 /src/**/*.js.map
 /src/**/*.d.ts
 /src/**/*.d.ts.map
