@@ -8,7 +8,7 @@ customElements.whenDefined('vaadin-overlay').then(() => {
    */
   class PositionedOverlay extends _PositionMixin(OverlayElement) {
     static get is() {
-      return 'month-picker-overlay';
+      return 'p-month-picker-overlay';
     }
 
     constructor() {

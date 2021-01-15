@@ -7,12 +7,12 @@ import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
 import {clickOnKey, yearMonthToValue} from "./month-picker-util";
 
 /**
- * @element month-picker-calendar
+ * @element p-month-picker-calendar
  */
-@customElement('month-picker-calendar')
+@customElement('p-month-picker-calendar')
 class MonthPickerCalendar extends VaadinElement {
   static get is() {
-    return 'month-picker-calendar';
+    return 'p-month-picker-calendar';
   }
 
   static get version() {
@@ -95,6 +95,6 @@ export { MonthPickerCalendar };
 
 declare global {
   interface HTMLElementTagNameMap {
-    'month-picker-calendar': MonthPickerCalendar;
+    'p-month-picker-calendar': MonthPickerCalendar;
   }
 }

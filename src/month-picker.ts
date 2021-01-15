@@ -26,14 +26,14 @@ import {TextFieldElement} from "@vaadin/vaadin-text-field/vaadin-text-field";
 import { MonthPickerCalendar } from './month-picker-calendar';
 
 /**
- * `<month-picker>` is a Web Component.
+ * `<p-month-picker>` is a Web Component.
  *
- * @element month-picker
+ * @element p-month-picker
  */
-@customElement('month-picker')
+@customElement('p-month-picker')
 class MonthPicker extends VaadinElement {
   static get is() {
-    return 'month-picker';
+    return 'p-month-picker';
   }
 
   static get version() {
@@ -95,14 +95,14 @@ class MonthPicker extends VaadinElement {
         ?readonly=${this.readonly}>
           <div part="toggle-button" slot="suffix"></div>
       </vaadin-text-field>
-      <month-picker-overlay
+      <p-month-picker-overlay
         id="overlay"
         .positionTarget=${this.textField}
         no-vertical-overlap
         .opened=${this.opened}
         @opened-changed=${this.__boundOverlayOpenedChanged}
         .renderer=${this.__boundRenderOverlay}>
-      </month-picker-overlay>
+      </p-month-picker-overlay>
     `;
   }
 
@@ -171,11 +171,11 @@ class MonthPicker extends VaadinElement {
 
   private __renderOverlay(root: HTMLElement) {
     const content = html`
-      <month-picker-calendar
+      <p-month-picker-calendar
         .value=${this.value}
         .shortMonthNames=${this.shortMonthNames}
         @month-clicked=${(e: CustomEvent) => this.value = (this.value === e.detail) ? '' : e.detail}
-      ></month-picker-calendar>`
+      ></p-month-picker-calendar>`
     render(content, root);
   }
 }
@@ -184,6 +184,6 @@ export { MonthPicker };
 
 declare global {
   interface HTMLElementTagNameMap {
-    'month-picker': MonthPicker;
+    'p-month-picker': MonthPicker;
   }
 }

@@ -6,7 +6,7 @@ import '@vaadin/vaadin-lumo-styles/spacing.js';
 import '@vaadin/vaadin-lumo-styles/style.js';
 import '@vaadin/vaadin-lumo-styles/typography.js';
 
-registerStyles('month-picker', css`
+registerStyles('p-month-picker', css`
   :host {
     box-sizing: border-box;
     font-family: var(--material-font-family);
@@ -36,7 +36,7 @@ registerStyles('month-picker', css`
   }
 `);
 
-registerStyles('month-picker-calendar', css`
+registerStyles('p-month-picker-calendar', css`
   :host {
     box-sizing: border-box;
     font-family: var(--material-font-family);
@@ -87,7 +87,7 @@ registerStyles('month-picker-calendar', css`
   }
 `);
 
-registerStyles('month-picker-overlay', css`
+registerStyles('p-month-picker-overlay', css`
   [part="content"] {
     padding: var(--lumo-space-s);
   }
