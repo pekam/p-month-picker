@@ -1,6 +1,6 @@
 {
   "name": "p-month-picker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A web component for picking year and month.",
   "main": "p-month-picker.js",
   "module": "p-month-picker.js",
@@ -17,6 +17,10 @@
   "bugs": {
     "url": "https://github.com/pekam/month-picker/issues"
   },
+  "files": [
+    "**/p-*.d.ts",
+    "**/p-*.js"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -31,7 +35,7 @@
   },
   "scripts": {
     "analyze": "wca analyze src/*.ts --format json --outFile custom-elements.json",
-    "build": "tsc && replace-in-file \"/(import|from)( '[.]+/)(.*)(?<!.js)(';)/g\" \"\\$1\\$2\\$3.js\\$4\" month-*.{js,d.ts},src/*.{js,d.ts},theme/**/*.{js,d.ts} --isRegex --verbose",
+    "build": "tsc && replace-in-file \"/(import|from)( '[.]+/)(.*)(?<!.js)(';)/g\" \"\\$1\\$2\\$3.js\\$4\" p-month-*.{js,d.ts},src/*.{js,d.ts},theme/**/*.{js,d.ts} --isRegex --verbose",
     "dist": "rimraf dist && npm run analyze && npm run build && rollup -c rollup.config.js && cp custom-elements.json dist",
     "check:version": "magi check-version",
     "gemini": "gemini update test/visual",
