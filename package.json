@@ -4,7 +4,7 @@
   "description": "A web component for picking year and month.",
   "main": "p-month-picker.js",
   "module": "p-month-picker.js",
-  "repository": "pekam/month-picker",
+  "repository": "pekam/p-month-picker",
   "keywords": [
     "Vaadin",
     "month-picker",
@@ -15,7 +15,7 @@
   "author": "Pekka Maanpää",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/pekam/month-picker/issues"
+    "url": "https://github.com/pekam/p-month-picker/issues"
   },
   "files": [
     "**/p-*.d.ts",
