@@ -174,7 +174,10 @@ class MonthPicker extends VaadinElement {
       <p-month-picker-calendar
         .value=${this.value}
         .shortMonthNames=${this.shortMonthNames}
-        @month-clicked=${(e: CustomEvent) => this.value = (this.value === e.detail) ? '' : e.detail}
+        @month-clicked=${(e: CustomEvent) => {
+          this.value = (this.value === e.detail) ? '' : e.detail;
+          this.opened = false;
+        }}
       ></p-month-picker-calendar>`
     render(content, root);
   }
