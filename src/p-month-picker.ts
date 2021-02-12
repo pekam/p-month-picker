@@ -26,7 +26,16 @@ import {TextFieldElement} from "@vaadin/vaadin-text-field/vaadin-text-field";
 import { MonthPickerCalendar } from './p-month-picker-calendar';
 
 /**
- * `<p-month-picker>` is a Web Component.
+ * `<p-month-picker>` is a web component for selecting year and month.
+ *
+ * Example:
+ * ```html
+ * <p-month-picker
+ *   value="2021-06"
+ *   min="2021-01"
+ *   max="2022-12"
+ * ></p-month-picker>
+ * ```
  *
  * @element p-month-picker
  */
