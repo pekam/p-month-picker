@@ -18,6 +18,11 @@ export function valueToYearMonth(value: string): YearMonth | null {
   return null;
 }
 
+export function isInvalid(value: string, min: string, max: string): boolean {
+  return (min && min.length && value < min)
+    || (max && max.length && value > max);
+}
+
 export function clickOnKey(event: KeyboardEvent, ...keys: string[]) {
   if (keys.includes(event.key) && event.target instanceof HTMLElement) {
     event.preventDefault();

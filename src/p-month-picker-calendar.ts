@@ -4,7 +4,7 @@
  */
 import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
-import {clickOnKey, yearMonthToValue} from "./p-month-picker-util";
+import {clickOnKey, isInvalid, yearMonthToValue} from "./p-month-picker-util";
 
 /**
  * @element p-month-picker-calendar
@@ -85,7 +85,7 @@ class MonthPickerCalendar extends VaadinElement {
             }))
           .map((props) => ({
               ...props,
-              disabled: this.__isDisabled(props.value)
+              disabled: isInvalid(props.value, this.min, this.max)
             }))
           .map(({content, value, disabled}) => html`
             <div class="month-button"
@@ -98,10 +98,6 @@ class MonthPickerCalendar extends VaadinElement {
                 ${content}
             </div>`)}
       </div>`;
-  }
-
-  private __isDisabled(value: string): boolean {
-    return (this.min && value < this.min) || (this.max && value > this.max);
   }
 
 }

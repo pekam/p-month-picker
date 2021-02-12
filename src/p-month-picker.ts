@@ -20,7 +20,7 @@ import {
   clickOnKey,
   yearMonthToValue,
   valueToYearMonth,
-  YearMonth
+  YearMonth, isInvalid
 } from "./p-month-picker-util";
 import {TextFieldElement} from "@vaadin/vaadin-text-field/vaadin-text-field";
 import { MonthPickerCalendar } from './p-month-picker-calendar';
@@ -59,6 +59,7 @@ class MonthPicker extends VaadinElement {
   @property({type: String}) placeholder = '';
   @property({type: Boolean}) disabled = false;
   @property({type: Boolean}) readonly = false;
+  @property({type: Boolean}) invalid = false;
 
   private monthNames = ["January", "February", "March", "April",
     "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -91,6 +92,8 @@ class MonthPicker extends VaadinElement {
     this.overlay = this.overlay || this.shadowRoot.querySelector('#overlay');
     this.overlay && this.overlay.render();
     this.calendar = this.calendar || this.shadowRoot.querySelector('p-month-picker-calendar');
+
+    this.invalid = isInvalid(this.value, this.min, this.max);
   }
 
   render() {
@@ -104,7 +107,8 @@ class MonthPicker extends VaadinElement {
         label=${this.label}
         placeholder=${this.placeholder}
         ?disabled=${this.disabled}
-        ?readonly=${this.readonly}>
+        ?readonly=${this.readonly}
+        ?invalid=${this.invalid}>
           <div part="toggle-button" slot="suffix"></div>
       </vaadin-text-field>
       <p-month-picker-overlay
