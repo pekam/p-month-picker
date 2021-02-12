@@ -85,6 +85,10 @@ registerStyles('p-month-picker-calendar', css`
     color: var(--lumo-base-color);
     font-weight: 600;
   }
+
+  .month-button[disabled] {
+    color: var(--lumo-disabled-text-color);
+  }
 `);
 
 registerStyles('p-month-picker-overlay', css`

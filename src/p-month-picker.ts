@@ -43,6 +43,9 @@ class MonthPicker extends VaadinElement {
   @property({type: String}) value = '';
   @property({type: Boolean}) opened = false;
 
+  @property({type: String}) min;
+  @property({type: String}) max;
+
   @property({type: String}) label = '';
   @property({type: String}) placeholder = '';
   @property({type: Boolean}) disabled = false;
@@ -173,6 +176,8 @@ class MonthPicker extends VaadinElement {
     const content = html`
       <p-month-picker-calendar
         .value=${this.value}
+        .min=${this.min}
+        .max=${this.max}
         .shortMonthNames=${this.shortMonthNames}
         @month-clicked=${(e: CustomEvent) => {
           this.value = (this.value === e.detail) ? '' : e.detail;

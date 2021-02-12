@@ -22,6 +22,8 @@ class MonthPickerCalendar extends VaadinElement {
   @property({type: String}) value;
   @property({type: Array}) shortMonthNames = [];
   @property({type: Number}) openedYear = 2020;
+  @property({type: String}) min;
+  @property({type: String}) max;
 
   static get styles() {
     return css`
@@ -52,6 +54,10 @@ class MonthPickerCalendar extends VaadinElement {
         height: var(--_month-button-height);
         line-height: var(--_month-button-height);
       }
+
+      .month-button[disabled] {
+        pointer-events: none;
+      }
     `;
   }
 
@@ -77,16 +83,25 @@ class MonthPickerCalendar extends VaadinElement {
               content: name,
               value: yearMonthToValue({year: this.openedYear, month: index + 1})
             }))
-          .map(({content, value}) => html`
+          .map((props) => ({
+              ...props,
+              disabled: this.__isDisabled(props.value)
+            }))
+          .map(({content, value, disabled}) => html`
             <div class="month-button"
               data-value=${value}
               ?selected=${this.value === value}
-              @click=${() => this.dispatchEvent(new CustomEvent('month-clicked', {detail: value}))}
+              @click=${() => disabled || this.dispatchEvent(new CustomEvent('month-clicked', {detail: value}))}
               @keydown=${e => clickOnKey(e, ' ', 'Enter')}
-              tabindex="0">
+              ?disabled=${disabled}
+              tabindex=${disabled ? "-1" : "0"}>
                 ${content}
             </div>`)}
       </div>`;
+  }
+
+  private __isDisabled(value: string): boolean {
+    return (this.min && value < this.min) || (this.max && value > this.max);
   }
 
 }
