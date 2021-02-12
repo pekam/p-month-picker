@@ -78,7 +78,7 @@ class MonthPicker extends VaadinElement {
     super.update(props);
     this.overlay = this.overlay || this.shadowRoot.querySelector('#overlay');
     this.overlay && this.overlay.render();
-    this.calendar = this.calendar || this.shadowRoot.querySelector('month-picker-calendar');
+    this.calendar = this.calendar || this.shadowRoot.querySelector('p-month-picker-calendar');
   }
 
   render() {
