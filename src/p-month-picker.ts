@@ -74,6 +74,7 @@ class MonthPicker extends VaadinElement {
   private __boundInputValueChanged = this.__inputValueChanged.bind(this);
   private __boundOverlayOpenedChanged = this.__overlayOpenedChanged.bind(this);
   private __boundRenderOverlay = this.__renderOverlay.bind(this);
+  private __dispatchChange = false;
 
   static get styles() {
     return css`
@@ -95,8 +96,9 @@ class MonthPicker extends VaadinElement {
 
     this.invalid = isInvalid(this.value, this.min, this.max);
 
-    if (props.has('value')) {
+    if (this.__dispatchChange && props.has('value')) {
       this.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+      this.__dispatchChange = false;
     }
   }
 
@@ -172,6 +174,7 @@ class MonthPicker extends VaadinElement {
   private __inputValueChanged() {
     const inputValue = this.textField.value;
     const yearMonth = this.parseValue(inputValue);
+    this.__dispatchChange = true;
     if (yearMonth) {
       this.value = yearMonthToValue(yearMonth);
     } else {
@@ -197,6 +200,7 @@ class MonthPicker extends VaadinElement {
         .max=${this.max}
         .shortMonthNames=${this.shortMonthNames}
         @month-clicked=${(e: CustomEvent) => {
+          this.__dispatchChange = true;
           this.value = (this.value === e.detail) ? '' : e.detail;
           this.opened = false;
         }}
