@@ -94,7 +94,8 @@ class MonthPickerCalendar extends VaadinElement {
               @click=${() => disabled || this.dispatchEvent(new CustomEvent('month-clicked', {detail: value}))}
               @keydown=${e => clickOnKey(e, ' ', 'Enter')}
               ?disabled=${disabled}
-              tabindex=${disabled ? "-1" : "0"}>
+              tabindex=${disabled ? "-1" : "0"}
+              role="button">
                 ${content}
             </div>`)}
       </div>`;
