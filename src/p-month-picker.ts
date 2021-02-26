@@ -180,16 +180,13 @@ class MonthPicker extends VaadinElement {
     } else {
       this.value = this.textField.value = '';
     }
+    this.__updateOpenedYear();
   }
 
   private __overlayOpenedChanged(e: CustomEvent) {
     const opened = e.detail.value;
     this.opened = opened;
-    if (opened) {
-      this.calendar.openedYear = this.yearMonth
-        ? this.yearMonth.year
-        : new Date().getFullYear();
-    }
+    this.__updateOpenedYear();
   }
 
   private __renderOverlay(root: HTMLElement) {
@@ -206,6 +203,14 @@ class MonthPicker extends VaadinElement {
         }}
       ></p-month-picker-calendar>`
     render(content, root);
+  }
+
+  private __updateOpenedYear() {
+    if (this.opened) {
+      this.calendar.openedYear = this.yearMonth
+        ? this.yearMonth.year
+        : new Date().getFullYear();
+    }
   }
 }
 
