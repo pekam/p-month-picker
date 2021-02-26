@@ -94,6 +94,10 @@ class MonthPicker extends VaadinElement {
     this.calendar = this.calendar || this.shadowRoot.querySelector('p-month-picker-calendar');
 
     this.invalid = isInvalid(this.value, this.min, this.max);
+
+    if (props.has('value')) {
+      this.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+    }
   }
 
   render() {
