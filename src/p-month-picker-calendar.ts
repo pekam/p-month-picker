@@ -65,15 +65,15 @@ class MonthPickerCalendar extends VaadinElement {
     return html`
 
       <div class="header">
-        <div class="yearButton prevYear" tabindex="0"
+        <button class="yearButton prevYear"
             @click=${() => this.openedYear--}
             @keydown=${e => clickOnKey(e, ' ', 'Enter')}
-        ></div>
+        ></button>
           ${this.openedYear}
-        <div class="yearButton nextYear" tabindex="0"
+        <button class="yearButton nextYear"
             @click=${() => this.openedYear++}
             @keydown=${e => clickOnKey(e, ' ', 'Enter')}
-        ></div>
+        ></button>
       </div>
 
       <div class="month-grid">

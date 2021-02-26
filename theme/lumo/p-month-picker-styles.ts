@@ -48,11 +48,13 @@ registerStyles('p-month-picker-calendar', css`
 
   .yearButton {
     outline: none;
+    border: none;
+    background: none;
   }
 
   .yearButton::before {
     font-family: "lumo-icons";
-    font-size: var(--lumo-icon-size-m);
+    font-size: calc(var(--lumo-icon-size-m) * 1.25);
     text-align: center;
     color: var(--lumo-contrast-60pct);
     cursor: var(--lumo-clickable-cursor);
