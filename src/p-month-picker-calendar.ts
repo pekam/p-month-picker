@@ -4,7 +4,12 @@
  */
 import {html, css, customElement, property} from 'lit-element';
 import { VaadinElement } from '@vaadin/element-base/vaadin-element.js';
-import {clickOnKey, isInvalid, yearMonthToValue} from "./p-month-picker-util";
+import {
+  clickOnKey,
+  isInvalid,
+  valueToYearMonth,
+  yearMonthToValue
+} from "./p-month-picker-util";
 
 /**
  * @element p-month-picker-calendar
@@ -68,11 +73,13 @@ class MonthPickerCalendar extends VaadinElement {
         <button class="yearButton prevYear"
             @click=${() => this.openedYear--}
             @keydown=${e => clickOnKey(e, ' ', 'Enter')}
+            ?disabled=${this.__isYearDisabled(this.openedYear - 1)}
         ></button>
           ${this.openedYear}
         <button class="yearButton nextYear"
             @click=${() => this.openedYear++}
             @keydown=${e => clickOnKey(e, ' ', 'Enter')}
+            ?disabled=${this.__isYearDisabled(this.openedYear + 1)}
         ></button>
       </div>
 
@@ -99,6 +106,11 @@ class MonthPickerCalendar extends VaadinElement {
                 ${content}
             </div>`)}
       </div>`;
+  }
+
+  private __isYearDisabled(year: number) {
+    return this.min && year < valueToYearMonth(this.min).year
+      || this.max && year > valueToYearMonth(this.max).year
   }
 
 }

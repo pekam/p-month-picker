@@ -60,6 +60,10 @@ registerStyles('p-month-picker-calendar', css`
     cursor: var(--lumo-clickable-cursor);
   }
 
+  .yearButton[disabled]::before {
+    color: var(--lumo-disabled-color);
+  }
+
   .yearButton:focus::before {
     color: var(--lumo-primary-color);
   }
