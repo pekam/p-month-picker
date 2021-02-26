@@ -25,7 +25,7 @@ class MonthPickerCalendar extends VaadinElement {
   }
 
   @property({type: String}) value;
-  @property({type: Array}) shortMonthNames = [];
+  @property({type: Array}) monthLabels = [];
   @property({type: Number}) openedYear = 2020;
   @property({type: String}) min;
   @property({type: String}) max;
@@ -84,10 +84,10 @@ class MonthPickerCalendar extends VaadinElement {
       </div>
 
       <div class="month-grid">
-        ${this.shortMonthNames
-          .map((name, index) => (
+        ${this.monthLabels
+          .map((label, index) => (
             {
-              content: name,
+              content: label,
               value: yearMonthToValue({year: this.openedYear, month: index + 1})
             }))
           .map((props) => ({

@@ -61,9 +61,8 @@ class MonthPicker extends VaadinElement {
   @property({type: Boolean}) readonly = false;
   @property({type: Boolean}) invalid = false;
 
-  private monthNames = ["January", "February", "March", "April",
-    "May", "June", "July", "August", "September", "October", "November", "December"];
-  private shortMonthNames = this.monthNames.map(m => m.substr(0, 3));
+  @property({type: Array}) monthLabels = ["Jan", "Feb", "Mar", "Apr",
+    "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   @query('#textField') private textField: TextFieldElement;
   // Can't use @query for overlay, because it will be teleported to body
@@ -195,7 +194,7 @@ class MonthPicker extends VaadinElement {
         .value=${this.value}
         .min=${this.min}
         .max=${this.max}
-        .shortMonthNames=${this.shortMonthNames}
+        .monthLabels=${this.monthLabels}
         @month-clicked=${(e: CustomEvent) => {
           this.__dispatchChange = true;
           this.value = (this.value === e.detail) ? '' : e.detail;
