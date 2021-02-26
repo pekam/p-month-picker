@@ -4,10 +4,8 @@
 It is built with [LitElement](https://lit-element.polymer-project.org/) and [Vaadin components](https://vaadin.com/components).
 The default styles are based on Vaadin's Lumo theme.
 
-## Usage
+<img src="https://raw.githubusercontent.com/pekam/p-month-picker/master/screenshot.png" alt="Screenshot of p-month-picker component" height="250px">
 
-After installing and importing the `p-month-picker` module from `npm`,
-you can use the HTML element, optionally setting initial properties as attributes:
 ```html
 <p-month-picker
   label="Starting month"
@@ -17,7 +15,7 @@ you can use the HTML element, optionally setting initial properties as attribute
 </p-month-picker>
 ```
 
-### Properties
+## Properties
 
 | Name  | Type | Example value |
 | ------------- | ------------- | ------------- |
@@ -32,7 +30,7 @@ you can use the HTML element, optionally setting initial properties as attribute
 | `invalid` | `boolean` | `false` |
 | `monthLabels` | `string[]` | `["Jan", ..., "Dec"]` |
 
-### Reacting to value changes
+## Reacting to value changes
 ```js
 const monthPicker = document.querySelector('p-month-picker');
 
@@ -40,7 +38,7 @@ monthPicker.addEventListener('change', e =>
   console.log('New value: ' + e.target.value));
 ```
 
-### Customization/i18n
+## Customization/i18n
 ```js
 // Customizing month labels in the overlay:
 monthPicker.monthLabels = [
