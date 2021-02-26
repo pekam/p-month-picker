@@ -206,10 +206,24 @@ class MonthPicker extends VaadinElement {
   }
 
   private __updateOpenedYear() {
-    if (this.opened) {
-      this.calendar.openedYear = this.yearMonth
-        ? this.yearMonth.year
-        : new Date().getFullYear();
+    if (!this.opened) {
+      return;
+    }
+    if (this.yearMonth) {
+      // The current value, if any, should be visible:
+      this.calendar.openedYear = this.yearMonth.year;
+    } else {
+      // Otherwise, show current year, or the closest year with enabled values:
+      const yearNow = new Date().getFullYear();
+
+      const adjustByMin = (year) => this.min
+        ? Math.max(year, valueToYearMonth(this.min).year)
+        : year;
+      const adjustByMax = (year) => this.max
+        ? Math.min(year, valueToYearMonth(this.max).year)
+        : year;
+
+      this.calendar.openedYear = adjustByMax(adjustByMin(yearNow));
     }
   }
 }
