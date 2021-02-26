@@ -15,6 +15,12 @@ The default styles are based on Vaadin's Lumo theme.
 </p-month-picker>
 ```
 
+## Installing
+
+```
+npm install p-month-picker
+```
+
 ## Properties
 
 | Name  | Type | Example value |
