@@ -48,7 +48,7 @@ class MonthPickerCalendar extends VaadinElement {
       .month-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        width: 16rem;
+        min-width: 16rem;
       }
 
       .month-button {

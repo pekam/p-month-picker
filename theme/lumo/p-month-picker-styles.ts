@@ -5,6 +5,7 @@ import '@vaadin/vaadin-lumo-styles/sizing.js';
 import '@vaadin/vaadin-lumo-styles/spacing.js';
 import '@vaadin/vaadin-lumo-styles/style.js';
 import '@vaadin/vaadin-lumo-styles/typography.js';
+import '@vaadin/vaadin-lumo-styles/mixins/menu-overlay.js';
 
 registerStyles('p-month-picker', css`
   :host {
@@ -101,4 +102,13 @@ registerStyles('p-month-picker-overlay', css`
   [part="content"] {
     padding: var(--lumo-space-s);
   }
-`);
+
+  @media (max-width: 420px), (max-height: 420px) {
+    [part='content'] {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+`,
+// @ts-ignore For unknown reason tsc doesn't allow options.include, although options' type is defined as object
+{ include: ['lumo-menu-overlay'], moduleId: 'p-month-picker-overlay' });
