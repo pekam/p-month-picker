@@ -6,7 +6,7 @@ customElements.whenDefined('vaadin-overlay').then(() => {
    * PositionMixin has not yet been released as part of <vaadin-overlay>.
    * Including it here enables aligning the overlay below the field.
    */
-  class PositionedOverlay extends _PositionMixin(OverlayElement) {
+  class MonthPickerOverlay extends _PositionMixin(OverlayElement) {
     static get is() {
       return 'p-month-picker-overlay';
     }
@@ -18,5 +18,5 @@ customElements.whenDefined('vaadin-overlay').then(() => {
         this.opened && (this.shadowRoot.querySelector('#overlay').tabIndex = -1));
     }
   }
-  customElements.define(PositionedOverlay.is, PositionedOverlay);
+  customElements.define(MonthPickerOverlay.is, MonthPickerOverlay);
 });
