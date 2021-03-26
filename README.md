@@ -44,18 +44,24 @@ monthPicker.addEventListener('change', e =>
   console.log('New value: ' + e.target.value));
 ```
 
-## Customization/i18n
+## Internationalization (i18n)
+
+Translating month labels in the overlay (to Finnish in this example):
 ```js
-// Customizing month labels in the overlay:
 monthPicker.monthLabels = [
   'Tammi', 'Helmi', 'Maalis', 'Huhti',
   'Touko', 'Kesä', 'Heinä', 'Elo',
   'Syys', 'Loka', 'Marras', 'Joulu'
 ]
+```
 
-// You can customize how the current value is presented in the field
-// by overriding the formatValue and parseValue functions.
-// This example changes e.g. "1/2020" to "Jan 2020":
+## Customizing the presentation format
+
+You can customize how the current value is presented in the input field
+by overriding the `formatValue` and `parseValue` functions.
+
+This example changes the format from `1/2020` to `Jan 2020`:
+```js
 monthPicker.formatValue = ({year, month}) =>
   `${monthPicker.monthLabels[month - 1]} ${year}`;
 
